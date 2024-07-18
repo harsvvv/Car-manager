@@ -125,6 +125,7 @@ dist/
 .pnp.*
 
 # dotenv environment variables file
+#secret
 .env
 .env.test
 .env.production

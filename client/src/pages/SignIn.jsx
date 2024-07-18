@@ -17,6 +17,10 @@ const SignIn = () => {
 
     const submitHandler=async(e)=>{
         e.preventDefault();
+        if(!formdata.email || !formdata.password){
+          toast.error("All fields are Required");
+          return;
+        }
        try {
           dispatch(signInstart())
        const response=  await axios.post('/api/auth/signin',formdata);

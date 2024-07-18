@@ -15,6 +15,10 @@ const SignUp = () => {
 
     const submitHandler=async(e)=>{
         e.preventDefault();
+        if(!formdata.userName || !formdata.password || !formdata.email){
+          toast.error("All fields are required");
+          return ;
+        }
        try {
           setLoading(true);
        const response=  await axios.post('/api/auth/signup',formdata);
@@ -60,11 +64,11 @@ const SignUp = () => {
 />
         <form onSubmit={submitHandler} className='flex flex-col gap-4'>
             <input type='text' placeholder='username'
-            className='border p-3 rounded-lg' id='userName' onChange={changeHandler}/>
+            className='border required p-3 rounded-lg' id='userName' onChange={changeHandler}/>
              <input type='email' placeholder='email'
-            className='border p-3 rounded-lg' id='email' onChange={changeHandler} />
+            className='border p-3 required rounded-lg' id='email' onChange={changeHandler} />
              <input type='password' placeholder='password'
-            className='border p-3 rounded-lg' id='password' onChange={changeHandler}/>
+            className='border required p-3 rounded-lg' id='password' onChange={changeHandler}/>
             <button disabled={loading} className='bg-slate-700 disabled:opacity-80 text-white uppercase hover:opacity-95 rounded-lg p-3'>
                 {loading?"Loading....":"sign up"}
             </button>

@@ -56,7 +56,7 @@ export default function Home() {
           place with ease
         </h1>
         <div className='text-gray-400 text-xs sm:text-sm'>
-          Sahand Estate is the best place to find your next perfect place to
+           EstateEase is the best place to find your next perfect place to
           live.
           <br />
           We have a wide range of properties for you to choose from.
@@ -71,11 +71,10 @@ export default function Home() {
             
       {offerListings.length > 0 && (
         <Swiper
-          modules={[Navigation]}
+          
           navigation
-          pagination={{ clickable: true }}
-          spaceBetween={50}
-          slidesPerView={1}
+          
+          
         >
           {offerListings.map((listing) => (
             <SwiperSlide key={listing._id}>

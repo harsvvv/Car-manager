@@ -4,6 +4,7 @@
 import React, { useRef, useState } from "react";
 import {useSelector} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
+import uploadImage from "../Helper/UploadImage.js";
 
 import {
     getDownloadURL,
@@ -60,27 +61,7 @@ export default function CreateListing() {
     }
    }
    const storeImage=async(file)=>{
-    return new Promise((resolve,reject)=>{
-        const storage=getStorage(app);
-        const fileName=new Date().getTime()+file.name;
-        const storageRef=ref(storage,fileName);
-        const uploadTask=uploadBytesResumable(storageRef,file);
-        uploadTask.on(
-            "state_changed",
-            (snapshot)=>{
-                 const progress=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
-                 console.log(`upload is ${progress} done`);
-            },
-            (error)=>{
-                reject(error);
-            },
-            ()=>{
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl)=>{
-                    resolve(downloadUrl);
-                })
-            }
-        )
-    })
+    return uploadImage(file);
    }
    const handleRemoveImage=(index)=>{
     setFormData({
