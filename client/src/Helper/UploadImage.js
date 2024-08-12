@@ -7,7 +7,9 @@ const uploadImage = async(image) => {
     method:"post",
     body:formData
  })
-  return dataResponse.json()
+  const response= dataResponse.json()
+  console.log("this is the url"+response);
+  return response;
 }
 
 export default uploadImage
