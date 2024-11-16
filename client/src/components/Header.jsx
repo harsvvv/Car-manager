@@ -29,8 +29,8 @@ export default function Header() {
    <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
    <Link to='/'>
    <h1 className='font-bold text-sm sm:text-lg flex flex-wrap'>
-        <span className='text-slate-500'>Estate</span>
-         <span className='text-slate-700'>Ease</span>
+        <span className='text-slate-500'>Car</span>
+         <span className='text-slate-700'> Manager</span>
     </h1>
     </Link>
     <form onSubmit={handleSubmit} className='bg-slate-100 p-3 rounded-lg flex items-center'>
@@ -40,6 +40,20 @@ export default function Header() {
         </button>
     </form>
     <ul className='flex gap-4 items-center'>
+    {currentUser && (
+            <>
+              <Link to="/edit">
+                <li className="hidden sm:inline text-slate-700 hover:underline cursor-pointer">
+                  Edit Listings
+                </li>
+              </Link>
+              <Link to="/create-listing">
+                <li className="hidden sm:inline text-slate-700 hover:underline cursor-pointer">
+                  Create Listing
+                </li>
+              </Link>
+            </>
+          )}
     <Link to='/'> 
     <li className='hidden sm:inline text-slate-700 hover:underline cursor-pointer'>Home</li>
     </Link>

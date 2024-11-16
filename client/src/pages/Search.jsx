@@ -7,11 +7,7 @@ export default function Search() {
     const navigate=useNavigate();
     const [sidebardata,setSidebardata]=useState({
         searchTerm:'',
-        type:'all',
-        parking:false,
-        offer:false,
-        sort:'created_at',
-        order:'desc',
+       
     })
     const [loading,setLoading]=useState(false);
     const [listings,setListings]=useState([]);
@@ -19,32 +15,22 @@ export default function Search() {
     useEffect(() => {
         const urlParams = new URLSearchParams(location.search);
         const searchTermFromUrl = urlParams.get('searchTerm');
-        const typeFromUrl = urlParams.get('type');
-        const parkingFromUrl = urlParams.get('parking');
-        const furnishedFromUrl = urlParams.get('furnished');
-        const offerFromUrl = urlParams.get('offer');
-        const sortFromUrl = urlParams.get('sort');
-        const orderFromUrl = urlParams.get('order');
+        
     
-        if (
-          searchTermFromUrl ||
-          typeFromUrl ||
-          parkingFromUrl ||
-          furnishedFromUrl ||
-          offerFromUrl ||
-          sortFromUrl ||
-          orderFromUrl
-        ) {
-          setSidebardata({
-            searchTerm: searchTermFromUrl || '',
-            type: typeFromUrl || 'all',
-            parking: parkingFromUrl === 'true' ? true : false,
-            furnished: furnishedFromUrl === 'true' ? true : false,
-            offer: offerFromUrl === 'true' ? true : false,
-            sort: sortFromUrl || 'created_at',
-            order: orderFromUrl || 'desc',
-          });
-        }
+        // if (
+        //   searchTermFromUrl 
+         
+        // ) {
+        //   setSidebardata({
+        //     searchTerm: searchTermFromUrl || '',
+        //     type: typeFromUrl || 'all',
+        //     parking: parkingFromUrl === 'true' ? true : false,
+        //     furnished: furnishedFromUrl === 'true' ? true : false,
+        //     offer: offerFromUrl === 'true' ? true : false,
+        //     sort: sortFromUrl || 'created_at',
+        //     order: orderFromUrl || 'desc',
+        //   });
+        // }
     
         const fetchListings = async () => {
           setLoading(true);
@@ -123,7 +109,7 @@ export default function Search() {
   return (
     <div className='flex flex-col md:flex-row md:min-h-screen'>
         <div className='p-7 border-b-2 md:border-r-2'>
-            <form onSubmit={handleSubmit} className='flex flex-col gap-8'>
+            {/* <form onSubmit={handleSubmit} className='flex flex-col gap-8'>
                 <div className="flex items-center gap-2">
                     <label className='whitespace-nowrap font-semibold' >Search Term:</label>
                     <input type='text'
@@ -199,7 +185,7 @@ export default function Search() {
                     </select>
                 </div>
                 <button className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'>Search</button>
-            </form>
+            </form> */}
         </div>
         <div  className='flex-1'>
             <h1 className="text-3xl font-semibold border-b p-3 text-slate-700 mt-5">Listing Results:</h1>

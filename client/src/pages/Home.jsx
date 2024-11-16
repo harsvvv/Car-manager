@@ -14,42 +14,26 @@ export default function Home() {
   SwiperCore.use([Navigation]);
   console.log(offerListings);
   useEffect(() => {
-    const fetchOfferListings = async () => {
+    const fetchCarListings = async () => {
       try {
-        const res = await fetch('/api/listing/get?offer=true&limit=4');
+        const res = await fetch('/api/listing/get?limit=4');
         const data = await res.json();
+        console.log("Home fetchingCarListing",data);
         setOfferListings(data);
-        fetchRentListings();
+        
       } catch (error) {
         console.log(error);
       }
     };
-    const fetchRentListings = async () => {
-      try {
-        const res = await fetch('/api/listing/get?type=rent&limit=4');
-        const data = await res.json();
-        setRentListings(data);
-        fetchSaleListings();
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  
 
-    const fetchSaleListings = async () => {
-      try {
-        const res = await fetch('/api/listing/get?type=sale&limit=4');
-        const data = await res.json();
-        setSaleListings(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchOfferListings();
+    
+    fetchCarListings();
   }, []);
   return (
     <div>
       {/* top */}
-      <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
+      {/* <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
         <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'>
           Find your next <span className='text-slate-500'>perfect</span>
           <br />
@@ -67,9 +51,9 @@ export default function Home() {
         >
           Let's get started...
         </Link>
-      </div>
+      </div> */}
             
-      {offerListings.length > 0 && (
+      {/* {offerListings.length > 0 && (
         <Swiper
           
           navigation
@@ -88,7 +72,7 @@ export default function Home() {
             </SwiperSlide>
           ))}
         </Swiper>
-      )}
+      )} */}
 
      
 
@@ -106,7 +90,7 @@ export default function Home() {
             </div>
           </div>
         )}
-        {rentListings && rentListings.length > 0 && (
+        {/* {rentListings && rentListings.length > 0 && (
           <div className=''>
             <div className='my-3'>
               <h2 className='text-2xl font-semibold text-slate-600'>Recent places for rent</h2>
@@ -118,8 +102,8 @@ export default function Home() {
               ))}
             </div>
           </div>
-        )}
-        {saleListings && saleListings.length > 0 && (
+        )} */}
+        {/* {saleListings && saleListings.length > 0 && (
           <div className=''>
             <div className='my-3'>
               <h2 className='text-2xl font-semibold text-slate-600'>Recent places for sale</h2>
@@ -131,7 +115,7 @@ export default function Home() {
               ))}
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

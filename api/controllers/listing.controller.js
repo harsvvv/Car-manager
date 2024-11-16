@@ -1,8 +1,9 @@
 import Listing from "../models/listing.model.js";
+import Car from "../models/car.model.js"
 import { errorHandler } from "../utils/error.js";
 export const createListing=async(req,res,next)=>{
 try {
-    const listing=await Listing.create(req.body);
+    const listing=await Car.create(req.body);
     return res.status(200).json(listing);
 } catch (error) {
     next(error);
@@ -10,7 +11,7 @@ try {
 }
 
 export const deleteListing=async(req,res,next)=>{
-    const listing =await Listing.findById(req.params.id);
+    const listing =await Car.findById(req.params.id);
     if(!listing){
         return next(errorHandler(404,'Listing not found'));
 
@@ -19,14 +20,14 @@ export const deleteListing=async(req,res,next)=>{
         return next(errorHandler(401,'you can only delete your own listing'));
     }
     try {
-        await Listing.findByIdAndDelete(req.params.id);
+        await Car.findByIdAndDelete(req.params.id);
         res.status(200).json('Listing has been deleted');
     } catch (error) {
         next(error);
     }
 }
 export const updateListing=async(req,res,next)=>{
-    const listing=await Listing.findById(req.params.id);
+    const listing=await Car.findById(req.params.id);
     if(!listing){
         return next(errorHandler(404,'Listing not found'));
     }
@@ -34,7 +35,7 @@ export const updateListing=async(req,res,next)=>{
         return next(errorHandler(401,'you can update your own listing only'));
     }
     try {
-        const updatedListing=await Listing.findByIdAndUpdate(req.params.id,req.body,{new:true});
+        const updatedListing=await Car.findByIdAndUpdate(req.params.id,req.body,{new:true});
         res.status(200).json(updatedListing);
     } catch (error) {
         next(error);
@@ -43,7 +44,7 @@ export const updateListing=async(req,res,next)=>{
 
     export const getListing = async (req, res, next) => {
         try {
-          const listing = await Listing.findById(req.params.id);
+          const listing = await Car.findById(req.params.id);
           if (!listing) {
             return next(errorHandler(404, 'Listing not found!'));
           }
@@ -54,47 +55,31 @@ export const updateListing=async(req,res,next)=>{
       };
 
       export const getListings = async (req, res, next) => {
-  try {
-    const limit = parseInt(req.query.limit) || 9;
-    const startIndex = parseInt(req.query.startIndex) || 0;
-
-    // Construct the filter object
-    const filter = {};
-    
-    if (req.query.offer !== undefined) {
-      filter.offer = req.query.offer === 'true';
-    }
-
-    if (req.query.furnished !== undefined) {
-      filter.furnished = req.query.furnished === 'true';
-    }
-
-    if (req.query.parking !== undefined) {
-      filter.parking = req.query.parking === 'true';
-    }
-
-    if (req.query.type && req.query.type !== 'all') {
-      filter.type = req.query.type;
-    } else {
-      filter.type = { $in: ['sale', 'rent'] };
-    }
-
-    const searchTerm = req.query.searchTerm || '';
-
-    const sort = req.query.sort || 'createdAt';
-
-    const order = req.query.order || 'desc';
-
-    const listings = await Listing.find({
-      name: { $regex: searchTerm, $options: 'i' },
-      ...filter
-    })
-    .sort({ [sort]: order })
-    .limit(limit)
-    .skip(startIndex);
-
-    return res.status(200).json(listings);
-  } catch (error) {
-    next(error);
-  }
-};
+        try {
+          const limit = parseInt(req.query.limit) || 9;
+          const startIndex = parseInt(req.query.startIndex) || 0;
+      
+          // Construct the filter object
+          const filter = {};
+          console.log("request reaching for home");
+      
+          const searchTerm = req.query.searchTerm || '';
+      
+          // Search by name, description, or carType using regex for case-insensitive search
+          const listings = await Car.find({
+            $or: [
+              { name: { $regex: searchTerm, $options: 'i' } },
+              { description: { $regex: searchTerm, $options: 'i' } },
+              { carType: { $regex: searchTerm, $options: 'i' } },
+            ],
+            ...filter
+          })
+          .limit(limit)
+          .skip(startIndex);
+      
+          return res.status(200).json(listings);
+        } catch (error) {
+          next(error);
+        }
+      };
+      

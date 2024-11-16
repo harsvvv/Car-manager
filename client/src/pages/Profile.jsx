@@ -125,7 +125,7 @@ export default function Profile() {
   reverseOrder={true}
 />
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-        <input
+        {/* <input
           onChange={(e) => setFile(e.target.files[0])}
           type='file'
           ref={fileRef}
@@ -150,7 +150,7 @@ export default function Profile() {
           ) : (
             ''
           )}
-        </p>
+        </p> */}
         <input
         onChange={handleChange}
           type='text'
@@ -187,12 +187,12 @@ export default function Profile() {
         <span onClick={handleDeleteUser} className='text-red-700 cursor-pointer'>Delete account</span>
         <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>Sign out</span>
       </div>
-      <button onClick={handleShowListing} className='text-green-700 w-full'>show Listings</button>
+      
     <p className='text-red-700 mt-5'>{showListingError?'error showing listing':""}</p>
-    <h1 className='text-center mb-2 text-2xl font-semibold'>Your listings</h1>
+   
     <div>
       
-   {userListings && userListings.length>0 && 
+   {/* {userListings && userListings.length>0 && 
    
    userListings.map((listing,index)=>(
     <div key={listing._id} className='border  rounded-lg p-3 flex justify-between items-center gap-4'>
@@ -213,7 +213,7 @@ export default function Profile() {
      </div>
     </div>
    ))
-   }
+   } */}
     </div>
     </div>
   );

@@ -2,6 +2,7 @@ import Listing from "../models/listing.model.js";
 import User from "../models/user.model.js";
 import { errorHandler } from "../utils/error.js";
 import bcryptjs from 'bcryptjs'
+import Car from "../models/car.model.js"
 
 export const test=(req,res)=>{
     res.send("hello router");
@@ -44,7 +45,8 @@ export const updateUser = async (req, res, next) => {
   export const getUserListings = async (req, res, next) => {
     if (req.user.id === req.params.id) {
       try {
-        const listings = await Listing.find({ userRef: req.params.id });
+        const listings = await Car.find({ userRef: req.params.id });
+        console.log("request is coming for get listing testing purpose");
         res.status(200).json(listings);
       } catch (error) {
         next(error);
