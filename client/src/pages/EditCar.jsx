@@ -49,6 +49,10 @@ const EditCar = () => {
       }
   return (
     <div className='w-[80%] mx-auto m-5'>
+    <div className='w-full flex justify-center items-center rounded-lg p-2'>
+    <h1 className='text-2xl  mx-auto mb-5 w-auto font-bold'>you can edit only your listing</h1>
+    </div>
+    
         {userListings && userListings.length>0 && 
    
    userListings.map((listing,index)=>(

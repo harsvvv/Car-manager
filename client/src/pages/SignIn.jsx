@@ -73,7 +73,7 @@ const SignIn = () => {
             <button disabled={loading} className='bg-slate-700 disabled:opacity-80 text-white uppercase hover:opacity-95 rounded-lg p-3'>
                 {loading?"Loading....":"sign in"}
             </button>
-            <OAuth/>
+            
         </form>
         <div className='flex gap-2 mt-5'>
             <p>dont Have an Account?</p>

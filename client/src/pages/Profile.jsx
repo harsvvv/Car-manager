@@ -125,32 +125,7 @@ export default function Profile() {
   reverseOrder={true}
 />
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-        {/* <input
-          onChange={(e) => setFile(e.target.files[0])}
-          type='file'
-          ref={fileRef}
-          hidden
-          accept='image/*'
-        />
-        <img
-          onClick={() => fileRef.current.click()}
-          src={formData?.avatar || currentUser.avatar}
-          alt='profile'
-          className='rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2'
-        />
-        <p className='text-sm self-center'>
-          {fileUploadError ? (
-            <span className='text-red-700'>
-              Error Image upload (image must be less than 2 mb)
-            </span>
-          ) : filePerc > 0 && filePerc < 100 ? (
-            <span className='text-slate-700'>{`Uploading ${filePerc}%`}</span>
-          ) : filePerc === 100 ? (
-            <span className='text-green-700'>Image successfully uploaded!</span>
-          ) : (
-            ''
-          )}
-        </p> */}
+     
         <input
         onChange={handleChange}
           type='text'
@@ -192,28 +167,7 @@ export default function Profile() {
    
     <div>
       
-   {/* {userListings && userListings.length>0 && 
    
-   userListings.map((listing,index)=>(
-    <div key={listing._id} className='border  rounded-lg p-3 flex justify-between items-center gap-4'>
-    
-     <Link to={`/listing/${listing._id}`}>
-      <img src={listing.imageUrls[0]} alt='coverImage' className='h-16 w-16 object-contain '/>
-
-     </Link>
-     <Link to={`/listing/${listing._id}`} className='font-semibold flex-1 hover:underline truncate' >
-      <p >{listing.name}</p>
-     </Link>
-     <div className=" flex flex-col">
-      <button onClick={()=>handleListingDelete(listing._id)} className='text-red-700 uppercase'>delete</button>
-      <Link to={`/update-listing/${listing._id}`}>
-      <button className='text-green-700 uppercase'>Edit</button>
-      </Link>
-      
-     </div>
-    </div>
-   ))
-   } */}
     </div>
     </div>
   );
